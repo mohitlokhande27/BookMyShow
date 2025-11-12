@@ -1,8 +1,6 @@
 package com.lld.BookMyShow.controllers;
 
-import com.lld.BookMyShow.dtos.ResponseStatus;
-import com.lld.BookMyShow.dtos.SignUpRequestDto;
-import com.lld.BookMyShow.dtos.SignUpResponseDto;
+import com.lld.BookMyShow.dtos.*;
 import com.lld.BookMyShow.models.User;
 import com.lld.BookMyShow.services.UserService;
 import org.springframework.stereotype.Controller;
@@ -28,5 +26,19 @@ public class UserController {
             signUpResponseDto.setFailureMessage(e.getMessage());
         }
         return signUpResponseDto;
+    }
+
+    public LoginResponseDto login(LoginRequestDto loginRequestDto) {
+        LoginResponseDto loginResponseDto = new LoginResponseDto();
+        try {
+            User user = userService.login(loginRequestDto.getUsername(), loginRequestDto.getPassword());
+            loginResponseDto.setLoggedIn(true);
+            loginResponseDto.setStatus(ResponseStatus.SUCCESS);
+        } catch (Exception e) {
+            loginResponseDto.setStatus(ResponseStatus.FAILURE);
+            loginResponseDto.setFailureMessage(e.getMessage());
+            loginResponseDto.setLoggedIn(false);
+        }
+        return loginResponseDto;
     }
 }

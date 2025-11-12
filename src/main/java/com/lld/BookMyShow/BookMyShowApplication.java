@@ -1,9 +1,7 @@
 package com.lld.BookMyShow;
 
 import com.lld.BookMyShow.controllers.UserController;
-import com.lld.BookMyShow.dtos.ResponseStatus;
-import com.lld.BookMyShow.dtos.SignUpRequestDto;
-import com.lld.BookMyShow.dtos.SignUpResponseDto;
+import com.lld.BookMyShow.dtos.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -23,15 +21,26 @@ public class BookMyShowApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        SignUpRequestDto signUpRequestDto = new SignUpRequestDto();
-        signUpRequestDto.setUsername("test1@gmail.com");
-        signUpRequestDto.setPassword("testpass");
+//        SignUpRequestDto signUpRequestDto = new SignUpRequestDto();
+//        signUpRequestDto.setUsername("test2@gmail.com");
+//        signUpRequestDto.setPassword("testpass1234");
+//
+//        SignUpResponseDto signUpResponseDto = userController.signup(signUpRequestDto);
+//        if(signUpResponseDto.getStatus().equals(ResponseStatus.SUCCESS)) {
+//            System.out.println("User created successfully");
+//        } else {
+//            System.out.println("User creation failed " + signUpResponseDto.getFailureMessage());
+//        }
 
-        SignUpResponseDto signUpResponseDto = userController.signup(signUpRequestDto);
-        if(signUpResponseDto.getStatus().equals(ResponseStatus.SUCCESS)) {
-            System.out.println("User created successfully");
+        LoginRequestDto loginRequestDto = new LoginRequestDto();
+        loginRequestDto.setUsername("test2@gmail.com");
+        loginRequestDto.setPassword("testpass1234");
+
+        LoginResponseDto loginResponseDto = userController.login(loginRequestDto);
+        if(loginResponseDto.getStatus().equals(ResponseStatus.SUCCESS)) {
+            System.out.println("User login successfully");
         } else {
-            System.out.println("User creation failed " + signUpResponseDto.getFailureMessage());
+            System.out.println("User login failed " + loginResponseDto.getFailureMessage());
         }
     }
 }
