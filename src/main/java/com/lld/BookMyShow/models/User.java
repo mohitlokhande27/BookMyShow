@@ -13,6 +13,13 @@ import java.util.List;
 public class User extends BaseModel{
     private String username;
     private String password;
+
     @OneToMany
     private List<Booking> bookings;
+
+    @OneToMany
+    private List<ShowSeat> showSeats;
+
+    @OneToMany
+    private List<ShowSeatType> showSeatTypes;
 }

@@ -14,7 +14,7 @@ public class Booking extends BaseModel{
     @ManyToOne
     private User bookedBy;
     private Date bookedAt;
-    private int totalAmount;
+    private double totalAmount;
     @OneToMany
     private List<Payment> payments;
     @ManyToMany // ideally it should be OneToMany but as user can cancel 1-2 showseat out of total 5 showSeat booked
